@@ -24,6 +24,20 @@
     @media(max-width:900px){.nav-links{gap:16px}.intro-grid{gap:48px}.community-card{display:block}.community-card img{width:100%;height:180px}.community-card .card-copy{padding:25px}.footer-grid{gap:30px}}
     @media(max-width:720px){.container{width:min(100% - 36px,var(--max))}.topline .container{justify-content:center}.topline .topline-right{display:none}.nav{height:72px}.brand{min-width:0}.brand-mark{width:42px;height:42px}.brand-copy strong{font-size:11px}.brand-copy span{font-size:9px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;left:0;right:0;top:72px;background:#fff;padding:12px 22px 22px;box-shadow:0 18px 30px rgba(16,27,54,.12);align-items:stretch;gap:0;flex-direction:column}.nav-links.open{display:flex}.nav-links a{padding:13px 4px;border-bottom:1px solid var(--line)}.nav-links .nav-cta{margin-top:12px;text-align:center;border:0}.hero{min-height:620px}.hero:before{background:linear-gradient(90deg,rgba(8,17,37,.93),rgba(8,17,37,.65)),url('images/page_1/u1.png') center/cover no-repeat}.hero-content{padding:90px 0 105px}.hero p{font-size:15px}.intro{padding:76px 0}.intro-grid{grid-template-columns:1fr;gap:46px}.intro-visual{min-height:340px;margin-right:12px}.intro-visual img{height:340px}.visual-note{right:-12px;bottom:18px;padding:18px 20px}.pillars{padding:55px 0}.pillars-grid{grid-template-columns:1fr}.pillar,.pillar:first-child{padding:24px 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.14)}.pillar:last-child{border:0}.pillar-number{font-size:29px;margin-bottom:8px}.community,.networks{padding:76px 0}.section-heading{margin-bottom:34px}.community-grid{grid-template-columns:1fr;gap:16px}.community-card{display:flex;min-height:190px}.community-card img{width:38%;height:auto;min-height:190px}.community-card .card-copy{padding:20px}.community-card h3{font-size:23px}.network-grid{grid-template-columns:1fr;gap:18px}.network-card img{height:220px}.closing{padding:68px 0}.footer-grid{grid-template-columns:1fr;gap:34px;padding-bottom:35px}.footer-brand p{margin-top:15px}.footer-bottom{font-size:10px}.legal{gap:13px}}
     @media(max-width:420px){.community-card{display:block}.community-card img{width:100%;height:170px}.community-card .card-copy{padding:22px}.actions .btn{width:100%}}
+  
+    /* Image sliders and responsive horizontal carousels */
+    .hero-carousel:before{background:linear-gradient(90deg,rgba(8,17,37,.91) 0%,rgba(8,17,37,.68) 48%,rgba(8,17,37,.24) 100%)}
+    .hero-slides{position:absolute;inset:0;overflow:hidden}.hero-slide{position:absolute;inset:0;background-position:center 42%;background-size:cover;opacity:0;transform:scale(1.08);transition:opacity 1.15s ease,transform 6s ease}.hero-slide.active{opacity:1;transform:scale(1)}
+    .slide-arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:46px;height:46px;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:rgba(12,22,43,.28);color:#fff;font-size:30px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:.2s}.slide-arrow:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}.hero-prev{left:25px}.hero-next{right:25px}
+    .slide-dots{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:26px}.slide-dot{width:8px;height:8px;padding:0;border:0;border-radius:20px;background:#c7c8ca;cursor:pointer;transition:width .25s,background .25s}.slide-dot.active{width:28px;background:var(--gold)}
+    .hero-dots{position:absolute;z-index:5;bottom:36px;left:50%;transform:translateX(-50%);margin:0}.hero-dots .slide-dot{background:rgba(255,255,255,.55)}.hero-dots .slide-dot.active{background:var(--gold-light)}
+    .hero-progress{position:absolute;z-index:5;bottom:0;left:0;width:100%;height:4px;background:rgba(255,255,255,.15)}.hero-progress span{display:block;height:100%;width:0;background:var(--gold);animation:heroProgress 6s linear infinite}.hero-progress.reset span{animation:none;width:0}
+    @keyframes heroProgress{from{width:0}to{width:100%}}
+    .carousel-shell{position:relative}.community-viewport,.network-viewport{overflow:hidden}.community-track,.network-track{display:flex;transition:transform .65s cubic-bezier(.22,.75,.25,1);will-change:transform}.community-track{gap:24px}.community-track .community-card{flex:0 0 calc(50% - 12px);min-width:0}.network-track{gap:22px}.network-track .network-card{flex:0 0 calc((100% - 44px)/3);min-width:0}.light-arrow{background:#fff;color:var(--navy);border-color:#e6e1d6;box-shadow:0 6px 18px rgba(16,27,54,.09)}.community-prev,.network-prev{left:-23px}.community-next,.network-next{right:-23px}.community-dots,.network-dots{margin-top:27px}
+    @media(max-width:900px){.network-track .network-card{flex-basis:calc((100% - 22px)/2)}}
+    @media(max-width:720px){.hero-prev{left:12px}.hero-next{right:12px}.hero-carousel .hero-content{padding-left:28px;padding-right:28px}.hero-dots{bottom:27px}.community-track .community-card{flex-basis:100%}.network-track .network-card{flex-basis:100%}.community-prev,.network-prev{left:-12px}.community-next,.network-next{right:-12px}.slide-arrow{width:38px;height:38px;font-size:25px}.community-shell,.network-shell{padding:0 10px}}
+    @media(prefers-reduced-motion:reduce){.hero-slide,.community-track,.network-track{transition:none}.hero-progress span{animation:none;width:100%}}
+
   </style>
 </head>
 <body>
@@ -41,13 +55,22 @@
     </div>
   </header>
   <main>
-    <section class="hero" id="home">
+    <section class="hero hero-carousel" id="home" aria-label="FNI image slideshow">
+      <div class="hero-slides" aria-hidden="true">
+        <div class="hero-slide active" style="background-image:url('images/page_1/u1.png')"></div>
+        <div class="hero-slide" style="background-image:url('images/page_1/u6.png')"></div>
+        <div class="hero-slide" style="background-image:url('images/page_1/u8.png')"></div>
+        <div class="hero-slide" style="background-image:url('images/page_1/u13.png')"></div>
+      </div>
       <div class="container"><div class="hero-content">
         <div class="eyebrow">Welcome to</div>
         <h1>Forerunners Network <span>International</span></h1>
         <p>Striving towards the rebirth of Apostolic Christianity. A ministry committed to the teaching of the sound, undiluted Word of God and prayer.</p>
         <div class="actions"><a class="btn btn-gold" href="#about">Discover FNI</a><a class="btn btn-outline" href="#networks">Find a network</a></div>
       </div></div>
+      <button class="slide-arrow hero-prev" aria-label="Previous picture">‹</button><button class="slide-arrow hero-next" aria-label="Next picture">›</button>
+      <div class="slide-dots hero-dots" aria-label="Choose slideshow picture"></div>
+      <div class="hero-progress"><span></span></div>
     </section>
     <section class="intro" id="about">
       <div class="container intro-grid">
@@ -71,20 +94,30 @@
     <section class="community" id="resources">
       <div class="container">
         <div class="section-heading"><div class="section-kicker">Stay connected</div><h2>We are closer than you think.</h2><p>Connect with Forerunners Network International and stay updated with ministry messages and community news.</p></div>
-        <div class="community-grid">
-          <article class="community-card"><img src="images/page_1/u58.png" alt="FNI social community"><div class="card-copy"><h3>Instagram</h3><p>Join our Instagram community to get updates and sermon recaps.</p><a class="text-link" href="mailto:Support@fniglobal.org?subject=FNI%20Instagram%20Community">Connect with FNI <span>→</span></a></div></article>
-          <article class="community-card"><img src="images/page_1/u56.png" alt="FNI audio and media resources"><div class="card-copy"><h3>Telegram</h3><p>Join our Telegram community to download our audio sermons.</p><a class="text-link" href="mailto:Support@fniglobal.org?subject=FNI%20Telegram%20Community">Connect with FNI <span>→</span></a></div></article>
+        <div class="carousel-shell community-shell">
+          <button class="slide-arrow light-arrow community-prev" aria-label="Scroll to previous community card">‹</button>
+          <div class="community-viewport"><div class="community-grid community-track">
+            <article class="community-card"><img src="images/page_1/u58.png" alt="FNI social community"><div class="card-copy"><h3>Instagram</h3><p>Join our Instagram community to get updates and sermon recaps.</p><a class="text-link" href="mailto:Support@fniglobal.org?subject=FNI%20Instagram%20Community">Connect with FNI <span>→</span></a></div></article>
+            <article class="community-card"><img src="images/page_1/u56.png" alt="FNI audio and media resources"><div class="card-copy"><h3>Telegram</h3><p>Join our Telegram community to download our audio sermons.</p><a class="text-link" href="mailto:Support@fniglobal.org?subject=FNI%20Telegram%20Community">Connect with FNI <span>→</span></a></div></article>
+          </div></div>
+          <button class="slide-arrow light-arrow community-next" aria-label="Scroll to next community card">›</button>
         </div>
+        <div class="slide-dots community-dots" aria-label="Choose community card"></div>
       </div>
     </section>
     <section class="networks" id="networks">
       <div class="container">
-        <div class="section-heading"><div class="section-kicker">Our networks</div><h2>Find an FNI network.</h2><p>Locate one of our networks and connect with the ministry community.</p></div>
-        <div class="network-grid">
-          <article class="network-card"><img src="images/page_1/ucc_u69.png" alt="FNI UCC Campus"><div class="network-copy"><h3>UCC Campus</h3><p>Forerunners Network International — UCC Campus.</p><div class="small-rule"></div></div></article>
-          <article class="network-card"><img src="images/page_1/u72.png" alt="FNI Legon Campus"><div class="network-copy"><h3>Legon Campus</h3><p>Forerunners Network International — Legon Campus.</p><div class="small-rule"></div></div></article>
-          <article class="network-card"><img src="images/page_1/u73.png" alt="FNI KNUST Campus"><div class="network-copy"><h3>KNUST Campus</h3><p>Forerunners Network International — KNUST Campus.</p><div class="small-rule"></div></div></article>
+        <div class="section-heading"><div class="section-kicker">Our networks</div><h2>Find an FNI network.</h2><p>Locate any of our Apostolic centres close to you.</p></div>
+        <div class="carousel-shell network-shell">
+          <button class="slide-arrow light-arrow network-prev" aria-label="Previous network">‹</button>
+          <div class="network-viewport"><div class="network-grid network-track">
+            <article class="network-card"><img src="images/page_1/ucc_u69.png" alt="FNI UCC Campus"><div class="network-copy"><h3>UCC Campus</h3><p>Forerunners Network International — UCC Campus.</p><div class="small-rule"></div></div></article>
+            <article class="network-card"><img src="images/page_1/u72.png" alt="FNI Legon Campus"><div class="network-copy"><h3>Legon Campus</h3><p>Forerunners Network International — Legon Campus.</p><div class="small-rule"></div></div></article>
+            <article class="network-card"><img src="images/page_1/u73.png" alt="FNI KNUST Campus"><div class="network-copy"><h3>KNUST Campus</h3><p>Forerunners Network International — KNUST Campus.</p><div class="small-rule"></div></div></article>
+          </div></div>
+          <button class="slide-arrow light-arrow network-next" aria-label="Next network">›</button>
         </div>
+        <div class="slide-dots network-dots" aria-label="Choose network"></div>
       </div>
     </section>
     <section class="closing">
@@ -106,6 +139,25 @@
     const nav=document.querySelector('.nav-links');
     toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');toggle.textContent=open?'×':'☰';});
     nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation');toggle.textContent='☰';}));
+
+    // Hero slideshow: autoplay, arrows, dots, keyboard and touch support.
+    (()=>{const root=document.querySelector('.hero-carousel');if(!root)return;const slides=[...root.querySelectorAll('.hero-slide')],dots=root.querySelector('.hero-dots'),progress=root.querySelector('.hero-progress');let index=0,timer=null,startX=0;
+      slides.forEach((_,i)=>{const b=document.createElement('button');b.className='slide-dot'+(i===0?' active':'');b.setAttribute('aria-label','Show picture '+(i+1));b.addEventListener('click',()=>show(i,true));dots.appendChild(b)});
+      const indicators=[...dots.children];function show(next,manual=false){index=(next+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===index));indicators.forEach((d,i)=>{d.classList.toggle('active',i===index);d.setAttribute('aria-current',i===index?'true':'false')});progress.classList.add('reset');void progress.offsetWidth;progress.classList.remove('reset');if(manual)restart()}
+      function restart(){clearInterval(timer);timer=setInterval(()=>show(index+1),6000)}root.querySelector('.hero-prev').addEventListener('click',()=>show(index-1,true));root.querySelector('.hero-next').addEventListener('click',()=>show(index+1,true));root.addEventListener('mouseenter',()=>clearInterval(timer));root.addEventListener('mouseleave',restart);root.addEventListener('focusin',()=>clearInterval(timer));root.addEventListener('focusout',restart);root.addEventListener('touchstart',e=>startX=e.changedTouches[0].clientX,{passive:true});root.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>45)show(index+(dx<0?1:-1),true)},{passive:true});restart();
+    })();
+
+    // Reusable sliding rows for ministry/community cards and campus networks.
+    function setupCarousel(trackSelector,viewportSelector,dotsSelector,prevSelector,nextSelector,visibleDesktop,interval){
+      const track=document.querySelector(trackSelector),viewport=document.querySelector(viewportSelector),dots=document.querySelector(dotsSelector),prev=document.querySelector(prevSelector),next=document.querySelector(nextSelector);if(!track||!viewport)return;
+      const cards=[...track.children];let index=0,timer=null,startX=0;const visible=()=>window.innerWidth<=720?1:window.innerWidth<=900?Math.min(2,cards.length):Math.min(visibleDesktop,cards.length);const max=()=>Math.max(0,cards.length-visible());
+      function makeDots(){dots.innerHTML='';for(let i=0;i<=max();i++){const b=document.createElement('button');b.className='slide-dot'+(i===index?' active':'');b.setAttribute('aria-label','Show item '+(i+1));b.addEventListener('click',()=>go(i,true));dots.appendChild(b)}}
+      function go(n,manual=false){index=Math.max(0,Math.min(max(),n));const card=cards[index];const shift=card?card.offsetLeft-track.offsetLeft:0;track.style.transform='translate3d('+(-shift)+'px,0,0)';[...dots.children].forEach((d,i)=>d.classList.toggle('active',i===index));prev.disabled=index===0;next.disabled=index===max();prev.style.opacity=prev.disabled?'.35':'1';next.style.opacity=next.disabled?'.35':'1';if(manual)restart()}
+      function restart(){clearInterval(timer);if(max()>0)timer=setInterval(()=>go(index>=max()?0:index+1),interval)}
+      prev.addEventListener('click',()=>go(index-1,true));next.addEventListener('click',()=>go(index+1,true));viewport.addEventListener('touchstart',e=>startX=e.changedTouches[0].clientX,{passive:true});viewport.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>40)go(index+(dx<0?1:-1),true)},{passive:true});viewport.addEventListener('mouseenter',()=>clearInterval(timer));viewport.addEventListener('mouseleave',restart);window.addEventListener('resize',()=>{makeDots();go(index);restart()});makeDots();go(0);restart();
+    }
+    setupCarousel('.community-track','.community-viewport','.community-dots','.community-prev','.community-next',2,5200);
+    setupCarousel('.network-track','.network-viewport','.network-dots','.network-prev','.network-next',3,4800);
   </script>
 </body>
 </html>
